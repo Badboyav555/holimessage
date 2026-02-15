@@ -3,63 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holi Wish</title>
+<title>Holi Surprise 🎨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
 body{
-margin:0;
-font-family:sans-serif;
-text-align:center;
-background:linear-gradient(135deg,#ff0080,#ff8c00,#40e0d0);
-color:white;
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
 }
-.container{padding:20px;}
+
+.card{
+    background:rgba(0,0,0,0.6);
+    padding:25px;
+    border-radius:20px;
+    max-width:500px;
+    width:100%;
+    box-shadow:0 0 30px rgba(255,255,255,0.2);
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.name{
+    font-size:26px;
+    font-weight:800;
+    color:#ffeb3b;
+    text-shadow:0 0 15px #ffeb3b;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+    margin:15px 0;
+}
+
 .message{
-background:rgba(0,0,0,0.3);
-padding:15px;
-border-radius:15px;
-margin-top:20px;
+    font-size:16px;
+    line-height:1.7;
+    margin-bottom:15px;
 }
+
 button{
-padding:12px 20px;
-border:none;
-border-radius:25px;
-margin-top:20px;
-font-weight:bold;
-cursor:pointer;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.create-btn{
+    background:#ff9800;
+    color:white;
+}
+
+.share-btn{
+    background:#25D366;
+    color:white;
+}
+
+.ad-box{
+    margin-top:20px;
 }
 </style>
 </head>
+
 <body>
 
-<div class="container">
+<div class="card">
 
-<h2 id="title"></h2>
+    <div id="content"></div>
 
-<div class="message">
-🎨 गुलाल की खुशबू, रंगों का त्योहार,<br>
-मिठाई की मिठास और अपनों का प्यार ❤️<br><br>
-🌈 आपको और आपके परिवार को<br>
-✨ होली की ढेर सारी शुभकामनाएं ✨
-</div>
-
-<button onclick="goCreate()">अपने नाम से बनाएं</button>
+    <div class="ad-box">
+        <!-- 🔥 Yaha Adsterra ka ad code paste karna -->
+    </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-let name = params.get("name");
+function getParam(name){
+    const params=new URLSearchParams(window.location.search);
+    return params.get(name);
+}
 
-if(name){
-document.getElementById("title").innerHTML =
-name + " ने आपके लिए क्या भेजा है 🎁";
+const fromName=getParam("from");
+
+if(fromName){
+
+document.getElementById("content").innerHTML=
+"<h1><span class='name'>"+fromName+"</span> ने आपके लिए क्या भेजा है? 🤔</h1>"+
+"<img src='https://images.unsplash.com/photo-1610878180933-1237289d7f6f' alt='Holi'>"+
+"<div class='message'>"+
+"🌸 होली की हार्दिक शुभकामनाएँ 🎨✨<br><br>"+
+"रंगों की तरह आपका जीवन भी खुशियों से भर जाए,<br>"+
+"हर दिन नई उमंग और नई रोशनी लाए 🌈<br>"+
+"आपका हर सपना सच हो,<br>"+
+"और आपका परिवार हमेशा मुस्कुराता रहे 💖<br><br>"+
+"🎉 आपको और आपके परिवार को होली की ढेर सारी शुभकामनाएँ 🎉"+
+"</div>"+
+"<button class='share-btn' onclick='shareWish()'>WhatsApp पर भेजें</button><br>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से बनाएं</button>";
+
+confetti({
+    particleCount:250,
+    spread:120,
+    origin:{y:0.6}
+});
+
 }else{
-document.getElementById("title").innerHTML =
-"किसी ने आपके लिए कुछ खास भेजा है 🎁";
+
+document.getElementById("content").innerHTML=
+"<h1>🎨 होली स्पेशल सरप्राइज 🎉</h1>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से होली विश बनाएं</button>";
 }
 
 function goCreate(){
-window.location.href = "create.html";
+    window.location.href="create.html";
+}
+
+function shareWish(){
+    const link=window.location.href;
+    const text=
+    "🌸 होली की हार्दिक शुभकामनाएँ 🎨✨\n\n"+
+    "देखिए आपके लिए क्या खास भेजा गया है 👇\n"+link;
+
+    window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
 }
 </script>
 
