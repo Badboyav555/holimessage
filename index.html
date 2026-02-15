@@ -3,84 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holi Wishes</title>
-
+<title>Holi Wish</title>
 <style>
-body {
-    margin:0;
-    font-family: 'Poppins', sans-serif;
-    text-align:center;
-    background: linear-gradient(135deg,#ff0080,#ff8c00,#40e0d0);
-    background-size:400% 400%;
-    animation:bg 10s infinite alternate;
-    color:white;
+body{
+margin:0;
+font-family:sans-serif;
+text-align:center;
+background:linear-gradient(135deg,#ff0080,#ff8c00,#40e0d0);
+color:white;
 }
-
-@keyframes bg{
-    0%{background-position:left;}
-    100%{background-position:right;}
-}
-
-.container{
-    padding:20px;
-}
-
-h1{
-    font-size:28px;
-    margin-top:20px;
-}
-
+.container{padding:20px;}
 .message{
-    font-size:20px;
-    margin:20px;
-    padding:15px;
-    background:rgba(0,0,0,0.3);
-    border-radius:15px;
+background:rgba(0,0,0,0.3);
+padding:15px;
+border-radius:15px;
+margin-top:20px;
 }
-
 button{
-    padding:12px 20px;
-    font-size:16px;
-    border:none;
-    border-radius:25px;
-    background:#fff;
-    color:#ff0080;
-    cursor:pointer;
-    margin:10px;
-    font-weight:bold;
-}
-
-button:hover{
-    transform:scale(1.05);
-}
-
-input{
-    padding:10px;
-    border-radius:20px;
-    border:none;
-    margin-top:10px;
-    width:80%;
-    max-width:250px;
-}
-
-.ad-box{
-    margin-top:20px;
-}
-
-img{
-    width:200px;
-    margin-top:15px;
+padding:12px 20px;
+border:none;
+border-radius:25px;
+margin-top:20px;
+font-weight:bold;
+cursor:pointer;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-<h1 id="senderText"></h1>
-
-<img src="https://i.ibb.co/0y8Fty5/holi-color.png" alt="Holi">
+<h2 id="title"></h2>
 
 <div class="message">
 🎨 गुलाल की खुशबू, रंगों का त्योहार,<br>
@@ -89,12 +42,7 @@ img{
 ✨ होली की ढेर सारी शुभकामनाएं ✨
 </div>
 
-<button onclick="createOwn()">अपने नाम से बनाएं</button>
-
-<div class="ad-box">
-<!-- Yaha Banner Ad Code Dal Sakte Ho -->
-<!-- AD CODE HERE -->
-</div>
+<button onclick="goCreate()">अपने नाम से बनाएं</button>
 
 </div>
 
@@ -103,32 +51,15 @@ const params = new URLSearchParams(window.location.search);
 let name = params.get("name");
 
 if(name){
-    document.getElementById("senderText").innerHTML =
-    name + " ने आपके लिए क्या भेजा है 🎁";
+document.getElementById("title").innerHTML =
+name + " ने आपके लिए क्या भेजा है 🎁";
 }else{
-    document.getElementById("senderText").innerHTML =
-    "किसी ने आपके लिए कुछ खास भेजा है 🎁";
+document.getElementById("title").innerHTML =
+"किसी ने आपके लिए कुछ खास भेजा है 🎁";
 }
 
-function createOwn(){
-    let newName = prompt("अपना नाम डालें:");
-    if(newName != null && newName != ""){
-        window.location.href = window.location.pathname + "?name=" + encodeURIComponent(newName);
-    }
-}
-
-function shareOnWhatsApp(){
-    const adLink = "YOUR_ADSTERRA_DIRECT_LINK"; // 👈 Apna direct link yaha daal
-
-    // Pehle ad open
-    window.open(adLink, "_blank");
-
-    const currentLink = window.location.href;
-    const text = "🎨 देखिए आपके लिए क्या भेजा है 👇\n" + currentLink;
-
-    setTimeout(()=>{
-        window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
-    },1000);
+function goCreate(){
+window.location.href = "create.html";
 }
 </script>
 
