@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holi Special Wish 🎨</title>
+<title>Holi Surprise 🎨</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -17,7 +17,7 @@
 
 body{
     min-height:100vh;
-    background:url("https://images.unsplash.com/photo-1586351012965-861624544334") no-repeat center center/cover;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -26,33 +26,37 @@ body{
     padding:20px;
 }
 
-.overlay{
+.card{
     background:rgba(0,0,0,0.6);
-    padding:30px;
+    padding:25px;
     border-radius:20px;
-    backdrop-filter:blur(10px);
     max-width:500px;
     width:100%;
     box-shadow:0 0 30px rgba(255,255,255,0.2);
 }
 
 h1{
-    font-size:26px;
+    font-size:22px;
     margin-bottom:15px;
 }
 
 .name{
-    font-size:28px;
+    font-size:26px;
     font-weight:800;
     color:#ffeb3b;
     text-shadow:0 0 15px #ffeb3b;
-    margin-bottom:15px;
 }
 
-.shayari{
+img{
+    width:100%;
+    border-radius:15px;
+    margin:15px 0;
+}
+
+.message{
     font-size:16px;
     line-height:1.7;
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 
 button{
@@ -65,7 +69,7 @@ button{
 }
 
 .create-btn{
-    background:#ff4081;
+    background:#ff9800;
     color:white;
 }
 
@@ -82,13 +86,9 @@ button{
 
 <body>
 
-<div class="overlay">
+<div class="card">
 
-    <h1>🎨 Holi Ki Hardik Shubhkamnaye 🎉</h1>
-
-    <div id="wishArea"></div>
-
-    <button class="create-btn" onclick="goCreate()">Apne Naam Se Wish Banaye</button>
+    <div id="content"></div>
 
     <div class="ad-box">
         <!-- 🔥 Yaha Adsterra ka ad code paste karna -->
@@ -107,25 +107,32 @@ function getParam(name){
 const fromName=getParam("from");
 
 if(fromName){
-    document.getElementById("wishArea").innerHTML=
-    "<div class='name'>"+fromName+"</div>"+
-    "<div class='shayari'>"+
-    "Rangon se bhara rahe aapka jeevan 🌈<br>"+
-    "Khushiyon se mehke aapka aangan 💖<br>"+
-    "Gulal ki tarah ude har sapna,<br>"+
-    "Aur har din laaye nayi umang 🎊<br><br>"+
-    "🎉 Happy Holi 🎉"+
-    "</div>"+
-    "<button class='share-btn' onclick='shareWish()'>Share on WhatsApp</button>";
 
-    confetti({
-        particleCount:250,
-        spread:120,
-        origin:{y:0.6}
-    });
+document.getElementById("content").innerHTML=
+"<h1><span class='name'>"+fromName+"</span> ने आपके लिए क्या भेजा है? 🤔</h1>"+
+"<img src='https://images.unsplash.com/photo-1610878180933-1237289d7f6f' alt='Holi'>"+
+"<div class='message'>"+
+"🌸 होली की हार्दिक शुभकामनाएँ 🎨✨<br><br>"+
+"रंगों की तरह आपका जीवन भी खुशियों से भर जाए,<br>"+
+"हर दिन नई उमंग और नई रोशनी लाए 🌈<br>"+
+"आपका हर सपना सच हो,<br>"+
+"और आपका परिवार हमेशा मुस्कुराता रहे 💖<br><br>"+
+"🎉 आपको और आपके परिवार को होली की ढेर सारी शुभकामनाएँ 🎉"+
+"</div>"+
+"<button class='share-btn' onclick='shareWish()'>WhatsApp पर भेजें</button><br>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से बनाएं</button>";
+
+confetti({
+    particleCount:250,
+    spread:120,
+    origin:{y:0.6}
+});
+
 }else{
-    document.getElementById("wishArea").innerHTML=
-    "<p>Create your own Holi wish and share with friends 🎨</p>";
+
+document.getElementById("content").innerHTML=
+"<h1>🎨 होली स्पेशल सरप्राइज 🎉</h1>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से होली विश बनाएं</button>";
 }
 
 function goCreate(){
@@ -135,8 +142,8 @@ function goCreate(){
 function shareWish(){
     const link=window.location.href;
     const text=
-    "🌸 Holi Ki Hardik Shubhkamnaye 🎨✨\n\n"+
-    "Special Surprise yahan dekho 👇\n"+link;
+    "🌸 होली की हार्दिक शुभकामनाएँ 🎨✨\n\n"+
+    "देखिए आपके लिए क्या खास भेजा गया है 👇\n"+link;
 
     window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
 }
