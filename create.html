@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Holi Wish 🎨</title>
+<title>अपनी होली विश बनाएं 🎨</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -33,7 +33,7 @@ button{
 }
 
 .generate-btn{
-    background:#ff4081;
+    background:#ff9800;
     color:white;
 }
 
@@ -46,9 +46,9 @@ button{
 
 <body>
 
-<h2>Apne Naam Se Holi Wish Banaye 🎨</h2>
+<h2>अपने नाम से होली विश बनाएं 🎨</h2>
 
-<input type="text" id="nameInput" placeholder="Enter Your Name">
+<input type="text" id="nameInput" placeholder="अपना नाम लिखें">
 <br>
 <button class="generate-btn" onclick="generate()">Generate</button>
 
@@ -60,21 +60,21 @@ let finalLink="";
 function generate(){
     const name=document.getElementById("nameInput").value.trim();
     if(name===""){
-        alert("Enter your name");
+        alert("अपना नाम लिखें");
         return;
     }
 
     finalLink=window.location.origin+"?from="+encodeURIComponent(name);
 
     document.getElementById("result").innerHTML=
-    "🎉 Your Link Ready:<br><br>"+finalLink+
-    "<br><br><button class='share-btn' onclick='share()'>Share on WhatsApp</button>";
+    "🎉 आपका लिंक तैयार है:<br><br>"+finalLink+
+    "<br><br><button class='share-btn' onclick='share()'>WhatsApp पर भेजें</button>";
 }
 
 function share(){
     const text=
-    "🌸 Holi Ki Hardik Shubhkamnaye 🎨✨\n\n"+
-    "Special Surprise yahan dekho 👇\n"+finalLink;
+    "🎨 देखिए मैंने आपके लिए क्या भेजा है 👇\n\n"+
+    finalLink;
 
     window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
 }
