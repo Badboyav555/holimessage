@@ -3,38 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holi Surprise 🎨</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<title>Holi Special Wish 🎨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:url("https://images.unsplash.com/photo-1586351012965-861624544334") no-repeat center center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
     color:white;
-    background:linear-gradient(-45deg,#ff4e50,#f9d423,#24c6dc,#dd2476);
-    background-size:400% 400%;
-    animation:gradient 8s ease infinite;
+    padding:20px;
 }
 
-@keyframes gradient{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-.container{
-    padding:40px 20px;
+.overlay{
+    background:rgba(0,0,0,0.6);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    max-width:500px;
+    width:100%;
+    box-shadow:0 0 30px rgba(255,255,255,0.2);
 }
 
 h1{
-    font-size:24px;
-    line-height:1.6;
+    font-size:26px;
+    margin-bottom:15px;
+}
+
+.name{
+    font-size:28px;
+    font-weight:800;
+    color:#ffeb3b;
+    text-shadow:0 0 15px #ffeb3b;
+    margin-bottom:15px;
+}
+
+.shayari{
+    font-size:16px;
+    line-height:1.7;
+    margin-bottom:20px;
 }
 
 button{
-    margin-top:30px;
-    padding:12px 25px;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.create-btn{
+    background:#ff4081;
+    color:white;
+}
+
+.share-btn{
+    background:#25D366;
+    color:white;
+}
+
+.ad-box{
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <h1>🎨 Holi Ki Hardik Shubhkamnaye 🎉</h1>
+
+    <div id="wishArea"></div>
+
+    <button class="create-btn" onclick="goCreate()">Apne Naam Se Wish Banaye</button>
+
+    <div class="ad-box">
+        <!-- 🔥 Yaha Adsterra ka ad code paste karna -->
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function getParam(name){
+    const params=new URLSearchParams(window.location.search);
+    return params.get(name);
+}
+
+const fromName=getParam("from");
+
+if(fromName){
+    document.getElementById("wishArea").innerHTML=
+    "<div class='name'>"+fromName+"</div>"+
+    "<div class='shayari'>"+
+    "Rangon se bhara rahe aapka jeevan 🌈<br>"+
+    "Khushiyon se mehke aapka aangan 💖<br>"+
+    "Gulal ki tarah ude har sapna,<br>"+
+    "Aur har din laaye nayi umang 🎊<br><br>"+
+    "🎉 Happy Holi 🎉"+
+    "</div>"+
+    "<button class='share-btn' onclick='shareWish()'>Share on WhatsApp</button>";
+
+    confetti({
+        particleCount:250,
+        spread:120,
+        origin:{y:0.6}
+    });
+}else{
+    document.getElementById("wishArea").innerHTML=
+    "<p>Create your own Holi wish and share with friends 🎨</p>";
+}
+
+function goCreate(){
+    window.location.href="create.html";
+}
+
+function shareWish(){
+    const link=window.location.href;
+    const text=
+    "🌸 Holi Ki Hardik Shubhkamnaye 🎨✨\n\n"+
+    "Special Surprise yahan dekho 👇\n"+link;
+
+    window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
+}
+</script>
+
+</body>
+</html>    padding:12px 25px;
     border:none;
     border-radius:10px;
     font-weight:bold;
