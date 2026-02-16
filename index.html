@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Morning 🎨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.card{
+    background:rgba(0,0,0,0.6);
+    padding:25px;
+    border-radius:20px;
+    max-width:500px;
+    width:100%;
+    box-shadow:0 0 30px rgba(255,255,255,0.2);
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.name{
+    font-size:26px;
+    font-weight:800;
+    color:#ffeb3b;
+    text-shadow:0 0 15px #ffeb3b;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+    margin:15px 0;
+}
+
+.message{
+    font-size:16px;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.create-btn{
+    background:#ff9800;
+    color:white;
+}
+
+.share-btn{
+    background:#25D366;
+    color:white;
+}
+
+.ad-box{
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div id="content"></div>
+
+    <div class="ad-box">
+        <!-- 🔥 Yaha Adsterra ka ad code paste karna -->
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function getParam(name){
+    const params=new URLSearchParams(window.location.search);
+    return params.get(name);
+}
+
+const fromName=getParam("from");
+
+if(fromName){
+
+document.getElementById("content").innerHTML=
+"<h1><span class='name'>"+fromName+"</span> ने आपके लिए क्या भेजा है? 🤔</h1>"+
+"<img src='https://images.unsplash.com/photo-1610878180933-1237289d7f6f' alt='Holi'>"+
+"<div class='message'>"+
+"🌸 नई सुबह की नई किरण, आपके जीवन में लाए खुशियों का दामन✨<br><br>"+
+"हर दिन की शुरुआत मुस्कान से हो, आपकी हर ख्वाहिश आसान से हो<br>"+
+"हर दिन नई उमंग और नई रोशनी लाए 🌈<br>"+
+"आपका हर सपना सच हो,<br>"+
+"और आपका परिवार हमेशा मुस्कुराता रहे 💖<br><br>"+
+"🎉खुश रहो, स्वस्थ रहो, यही दुआ है हमारी🎉"+
+"</div>"+
+"<button class='share-btn' onclick='shareWish()'>WhatsApp पर भेजें</button><br>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से बनाएं</button>";
+
+confetti({
+    particleCount:250,
+    spread:120,
+    origin:{y:0.6}
+});
+
+}else{
+
+document.getElementById("content").innerHTML=
+"<h1>🎨 Good Morning 🌞</h1>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से Good Morning विश बनाएं</button>";
+}
+
+function goCreate(){
+    window.location.href="create.html";
+}
+
+function shareWish(){
+    const link=window.location.href;
+    const text=
+    "🌸Good Morning 🎨✨\n\n"+
+    "देखिए आपके लिए क्या खास भेजा गया है 👇\n"+link;
+
+    window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
+}
+</script>
+
+</body>
+</html>
