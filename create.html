@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Morning 🎨</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    background:#111;
+    color:white;
+    text-align:center;
+    font-family:'Poppins',sans-serif;
+    padding:40px 20px;
+}
+
+input{
+    padding:12px;
+    width:80%;
+    max-width:300px;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    margin-top:15px;
+    cursor:pointer;
+}
+
+.generate-btn{
+    background:#ff9800;
+    color:white;
+}
+
+.share-btn{
+    background:#25D366;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<h2> अपने नाम से बनाए गुड मॉर्निंग मैसेज </h2>
+
+<input type="text" id="nameInput" placeholder="अपना नाम लिखें">
+<br>
+<button class="generate-btn" onclick="generate()">Generate</button>
+
+<div id="result" style="margin-top:20px;"></div>
+
+<script>
+let finalLink="";
+let adOpened=false; // 👈 ad control
+
+function generate(){
+    const name=document.getElementById("nameInput").value.trim();
+    if(name===""){
+        alert("अपना नाम लिखें");
+        return;
+    }
+
+    finalLink=window.location.origin+"?from="+encodeURIComponent(name);
+
+    document.getElementById("result").innerHTML=
+    "🎉 आपका लिंक तैयार है:<br><br>"+finalLink+
+    "<br><br><button class='share-btn' onclick='share()' id='shareBtn'>WhatsApp पर भेजें</button>";
+}
+
+function share(){
+
+    const adLink="https://omg10.com/4/10615483"; // 👈 Yaha apna direct link daal
+
+    if(!adOpened){
+        // First click → ad open
+        window.open(adLink,"_blank");
+        adOpened=true;
+
+        document.getElementById("shareBtn").innerText=
+        "अब WhatsApp पर भेजें";
+    }
+    else{
+        // Second click → WhatsApp open
+        const text=
+        "🎨 देखिए मैंने आपके लिए क्या भेजा है 👇\n\n"+
+        finalLink;
+
+        window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
+    }
+}
+</script>
+
+</body>
+</html>
